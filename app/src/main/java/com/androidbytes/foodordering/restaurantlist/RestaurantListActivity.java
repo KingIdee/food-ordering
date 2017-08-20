@@ -1,36 +1,36 @@
-package com.androidbytes.foodordering;
+package com.androidbytes.foodordering.restaurantlist;
 
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
-import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.util.ArrayList;
+import com.androidbytes.foodordering.R;
+import com.androidbytes.foodordering.ViewModelFactory;
 
-public class RestaurantListActivity extends AppCompatActivity implements LifecycleRegistryOwner {
+import javax.inject.Inject;
 
+import dagger.android.support.DaggerAppCompatActivity;
+
+public class RestaurantListActivity extends DaggerAppCompatActivity implements LifecycleRegistryOwner {
+
+    RestaurantListViewModel viewModel;
+    @Inject ViewModelProvider.Factory viewModelFactory;
     private LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_list);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        //ViewModelFactory mViewModelFactory = Injection.provideViewModelFactory(this);
-        RestaurantListViewModel viewModel = ViewModelProviders.of(this).get(RestaurantListViewModel.class);
-        viewModel.init();
-
+        setUpToolBar();
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(RestaurantListViewModel.class);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +39,6 @@ public class RestaurantListActivity extends AppCompatActivity implements Lifecyc
                         .setAction("Action", null).show();
             }
         });
-
     }
 
     @Override
@@ -67,6 +66,11 @@ public class RestaurantListActivity extends AppCompatActivity implements Lifecyc
     @Override
     public LifecycleRegistry getLifecycle() {
         return lifecycleRegistry;
+    }
+
+    private void setUpToolBar(){
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
 }

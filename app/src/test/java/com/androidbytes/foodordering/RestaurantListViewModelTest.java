@@ -1,5 +1,8 @@
 package com.androidbytes.foodordering;
 
+import com.androidbytes.foodordering.restaurantlist.RestaurantListRepository;
+import com.androidbytes.foodordering.restaurantlist.RestaurantListViewModel;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

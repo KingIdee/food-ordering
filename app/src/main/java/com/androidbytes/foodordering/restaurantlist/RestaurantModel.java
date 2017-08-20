@@ -1,4 +1,4 @@
-package com.androidbytes.foodordering;
+package com.androidbytes.foodordering.restaurantlist;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

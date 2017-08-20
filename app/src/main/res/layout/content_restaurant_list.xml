@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.androidbytes.foodordering.RestaurantListActivity"
+    tools:context="com.androidbytes.foodordering.restaurantlist.RestaurantListActivity"
     tools:showIn="@layout/activity_restaurant_list">
 
     <TextView

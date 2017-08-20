@@ -1,10 +1,12 @@
 package com.androidbytes.foodordering.modules;
 
-import com.androidbytes.foodordering.RestaurantModel;
+import com.androidbytes.foodordering.restaurantlist.RestaurantModel;
 
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import dagger.Binds;
+import dagger.Module;
+import dagger.Provides;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -20,6 +22,7 @@ import retrofit2.http.Header;
 /**
  * This is a module class for Dependency Injection
  */
+@Module
 public class NetworkModule {
 
     /**
@@ -40,6 +43,7 @@ public class NetworkModule {
 
     }
 
+    @Provides
     public static WebService providesWebService () {
 
         Retrofit.Builder builder = new Retrofit.Builder()
